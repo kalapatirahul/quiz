@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Independence Day Quiz 2026</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================
+         BACKGROUND MUSIC - NA.mp3
+    ================================== -->
+
+    <audio
+        id="backgroundMusic"
+        preload="auto">
+
+        <source
+            src="NA.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <!-- =================================
+         QUESTION TIMER SOUND - timer.mp3
+    ================================== -->
+
+    <audio
+        id="timerMusic"
+        preload="auto">
+
+        <source
+            src="timer.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <!-- =================================
+         WELCOME SCREEN
+    ================================== -->
+
+    <section
+        id="welcomeScreen"
+        class="screen welcome-screen">
+
+        <div
+            class="chakra-container"
+            onclick="openCelebration()">
+
+            <img
+                src="ashoka-chakra.png"
+                alt="Ashoka Chakra"
+                class="chakra-image">
+
+            <p>
+                Click the Ashoka Chakra to Enter
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         CELEBRATION SCREEN
+    ================================== -->
+
+    <section
+        id="celebrationScreen"
+        class="screen celebration-screen">
+
+        <div class="celebration-container">
+
+            <img
+                src="indian-flag.png"
+                alt="Indian Flag"
+                class="celebration-flag">
+
+            <h1>
+                Celebrating
+            </h1>
+
+            <h2>
+                79 Years of Independence
+            </h2>
+
+            <p>
+                15 August 1947 – 15 August 2026
+            </p>
+
+            <div class="celebration-line">
+            </div>
+
+            <strong>
+                Jai Hind!
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         LOGIN SCREEN
+    ================================== -->
+
+    <section
+        id="loginScreen"
+        class="screen login-screen">
+
+        <img
+            src="indian-flag.png"
+            alt="Indian National Flag"
+            class="login-flag-image">
+
+        <div class="login-box">
+
+            <div class="input-group">
+
+                <label for="rollNumber">
+                    Roll Number
+                </label>
+
+                <input
+                    type="text"
+                    id="rollNumber"
+                    placeholder="Enter your roll number"
+                    maxlength="12"
+                    autocomplete="off">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="studentName">
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter your name"
+                    autocomplete="off">
+
+            </div>
+
+
+            <p
+                id="loginError"
+                class="error">
+            </p>
+
+
+            <button
+                class="main-button"
+                onclick="login()">
+
+                Continue →
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         STUDENT QUIZ SCREEN
+    ================================== -->
+
+    <section
+        id="quizScreen"
+        class="screen">
+
+        <div class="quiz-container">
+
+            <div class="quiz-header">
+
+                <h1>
+                    Independence Day Quiz
+                </h1>
+
+                <div class="quiz-info">
+
+                    <span id="questionNumber">
+                        Question 1 / 10
+                    </span>
+
+                    <span id="score">
+                        Score: 0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="timer-container">
+
+                <div class="timer-label">
+                    Time Remaining
+                </div>
+
+                <div
+                    id="timer"
+                    class="timer">
+
+                    5
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-container">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar">
+                </div>
+
+            </div>
+
+
+            <div class="question-box">
+
+                <h2 id="question">
+                    Question will appear here
+                </h2>
+
+            </div>
+
+
+            <div
+                id="options"
+                class="options">
+            </div>
+
+
+            <p
+                id="feedback"
+                class="feedback">
+            </p>
+
+
+            <button
+                id="nextButton"
+                class="main-button next-button"
+                onclick="nextQuestion()">
+
+                Next Question →
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         STUDENT RESULT SCREEN
+    ================================== -->
+
+    <section
+        id="resultScreen"
+        class="screen">
+
+        <div class="result-container">
+
+            <img
+                src="indian-flag.png"
+                alt="Indian Flag"
+                class="result-flag-image">
+
+            <h1>
+                Quiz Completed!
+            </h1>
+
+            <p id="resultName">
+            </p>
+
+            <div class="result-score">
+
+                <span id="finalScore">
+                    0
+                </span>
+
+                <small>
+                    / 10
+                </small>
+
+            </div>
+
+            <p id="resultMessage">
+            </p>
+
+            <button
+                class="main-button"
+                onclick="showLeaderboard()">
+
+                View Leaderboard
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         ALREADY COMPLETED SCREEN
+    ================================== -->
+
+    <section
+        id="completedScreen"
+        class="screen">
+
+        <div class="result-container">
+
+            <img
+                src="indian-flag.png"
+                alt="Indian Flag"
+                class="result-flag-image">
+
+            <h1>
+                Welcome Back!
+            </h1>
+
+            <h2
+                id="alreadyName"
+                class="already-student-name">
+            </h2>
+
+            <p>
+                You have already completed the quiz.
+            </p>
+
+            <div class="result-score">
+
+                <span id="alreadyScore">
+                    0
+                </span>
+
+                <small>
+                    / 10
+                </small>
+
+            </div>
+
+            <button
+                class="main-button"
+                onclick="showLeaderboard()">
+
+                View Leaderboard
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         STUDENT LEADERBOARD
+    ================================== -->
+
+    <section
+        id="leaderboardScreen"
+        class="screen">
+
+        <div class="leaderboard-container">
+
+            <img
+                src="indian-flag.png"
+                alt="Indian Flag"
+                class="result-flag-image">
+
+            <h1>
+                Leaderboard
+            </h1>
+
+            <p>
+                Independence Day Quiz 2026
+            </p>
+
+            <div id="leaderboard">
+            </div>
+
+            <div class="wish">
+
+                <h2>
+                    Happy Independence Day
+                </h2>
+
+                <p>
+                    Let us celebrate the spirit of
+                    freedom, unity and progress.
+                </p>
+
+                <strong>
+                    Jai Hind!
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         ADMIN PORTAL
+    ================================== -->
+
+    <section
+        id="adminScreen"
+        class="screen admin-screen">
+
+        <div class="admin-container">
+
+
+            <!-- =================================
+                 ADMIN HEADER
+            ================================== -->
+
+            <div class="admin-header">
+
+                <img
+                    src="indian-flag.png"
+                    alt="Indian Flag"
+                    class="admin-flag-image">
+
+                <h1>
+                    Admin Portal
+                </h1>
+
+                <p>
+                    Independence Day Quiz 2026
+                </p>
+
+                <p class="admin-welcome">
+                    Welcome, Rahul
+                </p>
+
+            </div>
+
+
+            <!-- =================================
+                 ADMIN MENU
+            ================================== -->
+
+            <div
+                id="adminMenu"
+                class="admin-menu">
+
+                <button
+                    class="admin-menu-button"
+                    onclick="adminShowLeaderboard()">
+
+                    🏆
+
+                    <span>
+                        Leaderboard
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="admin-menu-button"
+                    onclick="adminShowStatistics()">
+
+                    📈
+
+                    <span>
+                        Statistics
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="admin-menu-button"
+                    onclick="startAdminTest()">
+
+                    📝
+
+                    <span>
+                        Take Test
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================
+                 ADMIN LEADERBOARD
+            ================================== -->
+
+            <div
+                id="adminLeaderboardPanel"
+                class="admin-panel"
+                style="display: none;">
+
+                <div class="admin-panel-header">
+
+                    <h2>
+                        🏆 Leaderboard
+                    </h2>
+
+                    <button
+                        class="admin-back-button"
+                        onclick="showAdminMenu()">
+
+                        ← Back
+
+                    </button>
+
+                </div>
+
+                <div
+                    id="adminLeaderboard"
+                    class="admin-data-area">
+
+                    Loading leaderboard...
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 ADMIN STATISTICS
+            ================================== -->
+
+            <div
+                id="adminStatisticsPanel"
+                class="admin-panel"
+                style="display: none;">
+
+                <div class="admin-panel-header">
+
+                    <h2>
+                        📈 Statistics
+                    </h2>
+
+                    <button
+                        class="admin-back-button"
+                        onclick="showAdminMenu()">
+
+                        ← Back
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================
+                     GENERAL STATISTICS ONLY
+                     QUESTION-WISE PERFORMANCE REMOVED
+                ================================== -->
+
+                <div
+                    id="adminStats"
+                    class="admin-stats-grid">
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 ADMIN TEST SCREEN
+            ================================== -->
+
+            <div
+                id="adminTestPanel"
+                class="admin-panel"
+                style="display: none;">
+
+                <div class="admin-test-header">
+
+                    <h2>
+                        📝 Admin Test
+                    </h2>
+
+                    <p>
+                        All 15 Questions
+                    </p>
+
+                    <div class="admin-test-info">
+
+                        <span id="adminQuestionNumber">
+                            Question 1 / 15
+                        </span>
+
+                        <span id="adminScore">
+                            Score: 0
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     ADMIN TIMER
+                ================================== -->
+
+                <div class="timer-container">
+
+                    <div class="timer-label">
+                        Time Remaining
+                    </div>
+
+                    <div
+                        id="adminTimer"
+                        class="timer">
+
+                        5
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     ADMIN PROGRESS
+                ================================== -->
+
+                <div class="progress-container">
+
+                    <div
+                        id="adminProgressBar"
+                        class="progress-bar">
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     ADMIN QUESTION
+                ================================== -->
+
+                <div class="question-box">
+
+                    <h2 id="adminQuestion">
+                        Question will appear here
+                    </h2>
+
+                </div>
+
+
+                <!-- =================================
+                     ADMIN OPTIONS
+                ================================== -->
+
+                <div
+                    id="adminOptions"
+                    class="options">
+                </div>
+
+
+                <!-- =================================
+                     ADMIN FEEDBACK
+                ================================== -->
+
+                <p
+                    id="adminFeedback"
+                    class="feedback">
+                </p>
+
+
+                <!-- =================================
+                     ADMIN NEXT BUTTON
+                ================================== -->
+
+                <button
+                    id="adminNextButton"
+                    class="main-button next-button"
+                    onclick="adminNextQuestion()">
+
+                    Next Question →
+
+                </button>
+
+
+                <!-- =================================
+                     ADMIN TEST RESULT
+                ================================== -->
+
+                <div
+                    id="adminTestResult"
+                    class="admin-test-result"
+                    style="display: none;">
+
+                    <h2>
+                        Test Completed!
+                    </h2>
+
+                    <div class="result-score">
+
+                        <span id="adminFinalScore">
+                            0
+                        </span>
+
+                        <small>
+                            / 15
+                        </small>
+
+                    </div>
+
+                    <p>
+                        This test does not affect
+                        the student leaderboard.
+                    </p>
+
+                    <button
+                        class="main-button"
+                        onclick="showAdminMenu()">
+
+                        Back to Admin Portal
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         FIREBASE REALTIME DATABASE
+    ================================== -->
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+        import {
+            getDatabase
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-database.js";
+
+
+        const firebaseConfig = {
+
+            apiKey:
+                "AIzaSyCh3ZLUcy86Xcb4jC3AJGv7OLafw3-LcxE",
+
+            authDomain:
+                "independence-day-quiz-20-aae32.firebaseapp.com",
+
+            projectId:
+                "independence-day-quiz-20-aae32",
+
+            storageBucket:
+                "independence-day-quiz-20-aae32.firebasestorage.app",
+
+            messagingSenderId:
+                "1048931935472",
+
+            appId:
+                "1:1048931935472:web:163e23d675fa7020ccce35"
+
+        };
+
+
+        const app =
+            initializeApp(firebaseConfig);
+
+
+        const database =
+            getDatabase(app);
+
+
+        window.firebaseDatabase =
+            database;
+
+
+        console.log(
+            "Firebase Realtime Database connected successfully!"
+        );
+
+    </script>
+
+
+    <!-- =================================
+         QUIZ JAVASCRIPT
+    ================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
