@@ -2580,6 +2580,120 @@ async function createLeaderboard() {
 }
 
 
+
+// ========================================
+// LOGOUT
+// ========================================
+//
+// Logs the current user/admin out of the
+// website and clears the saved page state.
+// ========================================
+
+function logout() {
+
+    // Stop all timers
+    clearInterval(timerInterval);
+    clearInterval(adminTimerInterval);
+
+    // Stop all music
+    stopTimerMusic();
+    stopBackgroundMusic();
+
+    // Clear current student/admin data
+    currentQuestion = 0;
+    userScore = 0;
+    currentRollNumber = "";
+    currentStudentName = "";
+
+    isGuest = false;
+    isAdmin = false;
+
+    questions = [];
+    studentQuestionResults = [];
+
+    adminQuestions = [];
+    adminCurrentQuestion = 0;
+    adminScore = 0;
+    adminQuestionAnswered = false;
+
+    timeLeft = TIME_PER_QUESTION;
+    adminTimeLeft = TIME_PER_QUESTION;
+
+    questionAnswered = false;
+    selectedStudentAnswer = null;
+
+    quizStartTime = null;
+    quizTimeTaken = 0;
+
+    restoringStudentState = false;
+    restoringAdminState = false;
+
+    // Remove saved session/page state
+    clearSavedPageState();
+
+    // Clear login fields
+    const rollInput = document.getElementById("rollNumber");
+    const nameInput = document.getElementById("studentName");
+    const loginError = document.getElementById("loginError");
+
+    if (rollInput) {
+        rollInput.value = "";
+    }
+
+    if (nameInput) {
+        nameInput.value = "";
+    }
+
+    if (loginError) {
+        loginError.textContent = "";
+    }
+
+    // Hide every screen
+    hideAllScreens();
+
+    // Return to login screen
+    const loginScreen = document.getElementById("loginScreen");
+
+    if (loginScreen) {
+        loginScreen.style.display = "flex";
+    }
+
+    // Reset admin panels
+    const adminMenu = document.getElementById("adminMenu");
+    const adminLeaderboardPanel = document.getElementById("adminLeaderboardPanel");
+    const adminStatisticsPanel = document.getElementById("adminStatisticsPanel");
+    const adminTestPanel = document.getElementById("adminTestPanel");
+    const adminTestResult = document.getElementById("adminTestResult");
+
+    if (adminMenu) {
+        adminMenu.style.display = "grid";
+    }
+
+    if (adminLeaderboardPanel) {
+        adminLeaderboardPanel.style.display = "none";
+    }
+
+    if (adminStatisticsPanel) {
+        adminStatisticsPanel.style.display = "none";
+    }
+
+    if (adminTestPanel) {
+        adminTestPanel.style.display = "none";
+    }
+
+    if (adminTestResult) {
+        adminTestResult.style.display = "none";
+    }
+
+    // Save the new logged-out state
+    savePageState();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
 // ================================================================
 // ================================================================
 // ADMIN PORTAL
