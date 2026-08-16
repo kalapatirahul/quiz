@@ -2648,6 +2648,12 @@ function logout() {
         loginError.textContent = "";
     }
 
+    // Cancel any pending celebration-to-login transition
+    if (typeof celebrationTimeout !== "undefined" && celebrationTimeout) {
+        clearTimeout(celebrationTimeout);
+        celebrationTimeout = null;
+    }
+
     // Hide every screen
     hideAllScreens();
 
@@ -2657,6 +2663,11 @@ function logout() {
     if (welcomeScreen) {
         welcomeScreen.style.display = "flex";
     }
+
+    // Keep the logged-out state cleared.
+    // Do NOT call savePageState() here because logout should
+    // remain on the welcome screen.
+    clearSavedPageState();
 
     // Reset admin panels
     const adminMenu = document.getElementById("adminMenu");
@@ -2684,9 +2695,6 @@ function logout() {
     if (adminTestResult) {
         adminTestResult.style.display = "none";
     }
-
-    // Save the new logged-out state
-    savePageState();
 
     window.scrollTo({
         top: 0,
