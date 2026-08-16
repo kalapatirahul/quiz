@@ -2651,11 +2651,11 @@ function logout() {
     // Hide every screen
     hideAllScreens();
 
-    // Return to login screen
-    const loginScreen = document.getElementById("loginScreen");
+    // Return to the Ashoka Chakra welcome screen
+    const welcomeScreen = document.getElementById("welcomeScreen");
 
-    if (loginScreen) {
-        loginScreen.style.display = "flex";
+    if (welcomeScreen) {
+        welcomeScreen.style.display = "flex";
     }
 
     // Reset admin panels
